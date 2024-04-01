@@ -2,17 +2,17 @@ import User from "../model/user.js";
 import bcrypt from "bcrypt";
 
 export async function registerController(req, res) {
-    console.log(req.body)
+    console.log(req.body);
 
-    const { user, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!user || !password)
+    if (!username || !password)
         return res.status(400).json({
             message: "Username and password are required.",
         });
 
     // check for duplicate usernames in the db
-    const duplicate = await User.findOne({ username: user }).exec();
+    const duplicate = await User.findOne({ username: username }).exec();
     if (duplicate) return res.sendStatus(409); // Conflict for duplication
 
     try {
@@ -21,12 +21,12 @@ export async function registerController(req, res) {
 
         // create and store new user
         const result = await User.create({
-            username: user,
+            username: username,
             password: hashedPassword,
         });
         console.log(result);
         res.status(201).json({
-            success: `User ${user} created!`,
+            success: `User ${username} created!`,
         });
     } catch (err) {
         res.status(500).json({

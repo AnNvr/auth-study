@@ -21,3 +21,6 @@ export const validateErrorMiddleware = (err, req, res, next) => {
 
     next()
 }
+
+// Mongoose allow me to validate data at database level
+// The JSON validator allows me to validate in my API calls before it reaches the database / server

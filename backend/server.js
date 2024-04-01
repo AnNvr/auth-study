@@ -9,6 +9,7 @@ import { corsOptions } from "./config/corsOptions.js";
 import { db } from "./config/db.js";
 import { credentials } from "./middleware/credentials.js";
 import { verifyJWT } from "./middleware/verifyJWT.js";
+import { validateErrorMiddleware } from "./middleware/validator.js";
 
 // create express app
 const app = express();
@@ -50,9 +51,12 @@ app.use(logoutRouter);
 app.use(verifyJWT);
 import usersRouter from "./routes/api/users.js";
 app.use(usersRouter);
+import employeesRouter from "./routes/api/employees.js";
+app.use(employeesRouter);
 
 // Error handler should be the last middleware
 app.use(errorHandler);
+app.use(validateErrorMiddleware);
 
 mongoose.connection.once("open", () => {
     console.log("Connected to MongoDB");

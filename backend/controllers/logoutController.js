@@ -17,7 +17,7 @@ export async function logoutController (req, res) {
 
     // Delete refreshToken in db
     existingUser.refreshToken = ''
-    const result = await foundUser.save()
+    const result = await existingUser.save()
 
     res.clearCookie('jwt', { httpOnly: true, sameSite:'None', secure: true })
     res.sendStatus(204)

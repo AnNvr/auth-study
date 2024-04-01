@@ -1,8 +1,22 @@
 import { Router } from "express";
 import { authController } from "../controllers/authController.js";
+import { validate } from "../middleware/validator.js";
 
-const authRouter = Router()
+const loginSchema = {
+    type: "object",
+    required: ["username", "password"],
+    properties: {
+        username: {
+            type: "string",
+        },
+        password: {
+            type: "string",
+        },
+    },
+};
 
-authRouter.post("/auth", authController)
+const authRouter = Router();
 
-export default authRouter
+authRouter.post("/auth", validate({ body: loginSchema }), authController);
+
+export default authRouter;

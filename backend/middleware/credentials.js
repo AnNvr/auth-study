@@ -1,8 +1,8 @@
-import { list } from "../config/corsOptions.js";
+import { whiteList } from "../config/corsOptions.js";
 
 export const credentials = (req, res, next) => {
     const origin = req.headers.origin
-    if (list.includes(origin)) {
+    if (whiteList.includes(origin)) {
         res.header('Access-Control-Allow-Credentials', true)
     }
     next()

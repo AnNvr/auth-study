@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { AuthProvider } from "./hooks/auth.jsx";
 import LoginForm from "./pages/LoginForm";
+import RegistrationForm from "./pages/RegistrationForm.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 
 const AuthProviderWithNavigate = ({ children }) => {
@@ -13,7 +14,8 @@ export default function App() {
         <BrowserRouter>
             <AuthProviderWithNavigate>
                 <Routes>
-                    <Route path="/" element={<LoginForm />} />
+                    <Route path="/" element={<RegistrationForm />} />
+                    <Route path="/auth" element={<LoginForm />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                 </Routes>
             </AuthProviderWithNavigate>

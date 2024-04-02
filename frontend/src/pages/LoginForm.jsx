@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/auth";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({
-        username: '',
-        password: '',
+        username: "",
+        password: "",
     });
     const { login } = useAuth();
 
@@ -68,6 +69,9 @@ export default function LoginForm() {
                         <div>
                             <button type="submit">Login</button>
                         </div>
+                        <span>
+                            Not registered yet? <Link to="/">Register</Link>
+                        </span>
                     </div>
                 </form>
             </div>

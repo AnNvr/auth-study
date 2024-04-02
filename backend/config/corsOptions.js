@@ -1,5 +1,5 @@
 // CORS options here
-export const list = [
+export const whiteList = [
     "https://www.yoursite.com",
     "http://localhost:3500",
     "http://localhost:5173",
@@ -8,7 +8,7 @@ export const list = [
 
 export const corsOptions = {
     origin: (origin, callback) => {
-        if (list.indexOf(origin) !== -1 || !origin) {
+        if (whiteList.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
             callback(new Error("Not allowed by CORS"));

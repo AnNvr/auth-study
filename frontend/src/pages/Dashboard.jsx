@@ -1,6 +1,10 @@
 import { useAuth } from "../hooks/auth"
 
-export default function Dashboard () {
-    const { authUser } = useAuth()
-    return <h1>{`Hi ${authUser}! You have logged in successfully!`}</h1>
+export default function Dashboard() {
+    const { authUser } = useAuth();
+    return (
+        <h1>
+            {authUser ? `Hi ${authUser.username}! You have logged in successfully!` : "Not logged in"}
+        </h1>
+    );
 }
